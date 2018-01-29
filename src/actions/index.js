@@ -19,12 +19,8 @@ export const passwordChanged = (text) => {
 
 export const loginUser = ( { email, password } ) => {
    return (dispatch) => {
-      //login request starts
       firebase.auth().signInWithEmailAndPassword(email, password)
-         //dispatch an action after the request completes
-         //dispatch & user are passed as parameters allowing to pass the action over to reducers
          .then(user => loginUserSuccess(dispatch, user))
-         //if login fails => create new user account
          .catch(() => {
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(user => loginUserSuccess(dispatch, user));
@@ -32,12 +28,11 @@ export const loginUser = ( { email, password } ) => {
    };
 };
 
-//helper method for login user success
 const loginUserSuccess = (dispatch, user) => {
    dispatch({
       type: LOGIN_USER_SUCCESS,
       payload: user
    });
-
-   Actions.employeeList;
+   //Actions match with the key of Scence in Router.js
+   Actions.employeeList();
 };

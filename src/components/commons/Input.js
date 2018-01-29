@@ -10,7 +10,7 @@ const Input = (props) => {
             autoCorrect = {false}
             style = {inputStyle}
             value = {props.value}
-            onChangeText = {props.handleChangeText}
+            onChangeText = {props.onChangeText}
             placeholder = {props.placeholder}
          />
       </View>
