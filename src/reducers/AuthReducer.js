@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
          return { ...state, pending: true}
       
       case LOGIN_USER_SUCCESS:
-         return { ...state, user: action.payload, pending: false}
+         return { ...state, ...initialState, user: action.payload}
       
       case LOGIN_USER_FAIL: 
          return { ...state, error: action.payload, pending: false}
