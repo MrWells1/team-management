@@ -12,7 +12,7 @@ const initialState = {
 export default (state = initialState, action) => {
 
    switch (action.type) {
-      case EMAIL_CHANGED:
+      case EMAIL_CHANGED:  
          // create a new object
          return { ...state, email: action.payload, error: ''};
       
