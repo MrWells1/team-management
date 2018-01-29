@@ -56,7 +56,9 @@ class LoginForm extends Component {
               </Button>
             </CardItem>
             
+            <View style={{backgroundColor: 'white'}}>
             <Text style={styles.signupMessage}>First time here?</Text>
+            </View>
             <CardItem style={styles.signupCard}>
               <Button onPress = {this.onSignupPress.bind(this)}>
                 Sign Up
@@ -86,7 +88,7 @@ export default connect(mapStateToProps, {
 const styles = {
   signupMessage: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 18,
     paddingTop: 10,
     paddingBottom: 10
   }
