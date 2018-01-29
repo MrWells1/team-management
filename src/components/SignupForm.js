@@ -25,6 +25,7 @@ class SignupForm extends Component {
                <Input
                   placeholder = 'Email' 
                   onChangeText = {this.onEmailChange.bind(this)}
+                  keyboardType = 'email-address'
                />
             </CardItem>
 

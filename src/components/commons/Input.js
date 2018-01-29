@@ -12,6 +12,7 @@ const Input = (props) => {
             value = {props.value}
             onChangeText = {props.onChangeText}
             placeholder = {props.placeholder}
+            keyboardType = {props.keyboardType}
          />
       </View>
    );

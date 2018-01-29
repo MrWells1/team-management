@@ -34,6 +34,7 @@ class LoginForm extends Component {
                   placeholder = 'Email' 
                   onChangeText = {this.onEmailChange.bind(this)} 
                   value = {this.props.email}
+                  keyboardType='email-address'
                />
             </CardItem>
 
@@ -45,14 +46,18 @@ class LoginForm extends Component {
                   value = {this.props.password}
                />
             </CardItem>
+            <View style={{backgroundColor: 'white'}}>
+              <Text style={{color: 'red', fontSize: 20, paddingTop: 5, paddingBottom: 5, textAlign: 'center'}}>{this.props.error}</Text>
+            </View>
 
             <CardItem>
               <Button onPress = { this.onLoginPress.bind(this) } >
                 Login
               </Button>
             </CardItem>
-            <CardItem>
-              <Text>First time here?</Text>
+            
+            <Text style={styles.signupMessage}>First time here?</Text>
+            <CardItem style={styles.signupCard}>
               <Button onPress = {this.onSignupPress.bind(this)}>
                 Sign Up
               </Button>
@@ -65,7 +70,8 @@ class LoginForm extends Component {
 const mapStateToProps = state => {
   return {
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+    error: state.auth.error
   };
 };
 
@@ -75,3 +81,13 @@ export default connect(mapStateToProps, {
   passwordChanged,
   loginUser
 })(LoginForm);
+
+//Styling
+const styles = {
+  signupMessage: {
+    textAlign: 'center',
+    fontSize: 20,
+    paddingTop: 10,
+    paddingBottom: 10
+  }
+};
