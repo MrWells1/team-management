@@ -1,8 +1,7 @@
 import firebase from 'firebase';
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS } from "./types";
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, SIGNUP_USER } from "./types";
 import { Actions } from 'react-native-router-flux';
 
-// create emailChanged Action Creator
 export const emailChanged = (text) => {
    return {
       type: EMAIL_CHANGED,
@@ -20,14 +19,16 @@ export const passwordChanged = (text) => {
 export const loginUser = ( { email, password } ) => {
    return (dispatch) => {
       firebase.auth().signInWithEmailAndPassword(email, password)
-         .then(user => loginUserSuccess(dispatch, user))
-         .catch(() => {
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(user => loginUserSuccess(dispatch, user));
-         });
+         .then(user => loginUserSuccess(dispatch, user));
    };
 };
 
+export const signupUser = ( {email, password}) => {
+      return (dispatch) => {
+         firebase.auth().createUserWithEmailAndPassword(email, password)
+         .then(user => loginUserSuccess(dispatch, user))
+      }
+};
 const loginUserSuccess = (dispatch, user) => {
    dispatch({
       type: LOGIN_USER_SUCCESS,
@@ -36,3 +37,4 @@ const loginUserSuccess = (dispatch, user) => {
    //Actions match with the key of Scence in Router.js
    Actions.employeeList();
 };
+

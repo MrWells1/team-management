@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+import { View, Text } from 'react-native';
 import {Card, CardItem, Input, Button} from './commons';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from "../actions";
+import { Actions } from "react-native-router-flux";
+
 
 class LoginForm extends Component {
 
@@ -14,10 +17,13 @@ class LoginForm extends Component {
       this.props.passwordChanged(text);
     }
 
-    // Call Action Creator when user press the button
-    onButtonPress() {
+    onLoginPress() {
       const { email, password } = this.props;
       this.props.loginUser({ email, password });
+    }
+
+    onSignupPress() {
+      Actions.signup();
     }
 
     render() {
@@ -41,8 +47,14 @@ class LoginForm extends Component {
             </CardItem>
 
             <CardItem>
-              <Button onPress = { this.onButtonPress.bind(this) } >
+              <Button onPress = { this.onLoginPress.bind(this) } >
                 Login
+              </Button>
+            </CardItem>
+            <CardItem>
+              <Text>First time here?</Text>
+              <Button onPress = {this.onSignupPress.bind(this)}>
+                Sign Up
               </Button>
             </CardItem>
          </Card>
