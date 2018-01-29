@@ -38,7 +38,7 @@ const loginUserSuccess = (dispatch, user) => {
       payload: user
    });
    //Actions match with the key of Scence in Router.js
-   Actions.employeeList();
+   Actions.main();
 };
 
 const loginUserFail = (dispatch) => {
