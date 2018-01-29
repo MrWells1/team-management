@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text } from 'react-native';
-import {Card, CardItem, Input, Button} from './commons';
+import {Card, CardItem, Input, Button, Spinner} from './commons';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from "../actions";
 import { Actions } from "react-native-router-flux";
@@ -25,10 +25,26 @@ class LoginForm extends Component {
     onSignupPress() {
       Actions.signup();
     }
+    
+    renderSpinner() {
+      if(this.props.pending) {
+        return(
+          <Spinner />
+        );
+      }
+      else {
+        return(
+          <Button onPress = { this.onLoginPress.bind(this) } >
+            Login
+          </Button>
+        );
+      }
+    }
 
     render() {
       return(
          <Card>
+           {/* Email input */}
             <CardItem>
                <Input
                   placeholder = 'Email' 
@@ -38,6 +54,7 @@ class LoginForm extends Component {
                />
             </CardItem>
 
+            {/* Password input */}
             <CardItem>
                <Input
                   secureTextEntry
@@ -46,16 +63,18 @@ class LoginForm extends Component {
                   value = {this.props.password}
                />
             </CardItem>
+
+            {/* Error message */}
             <View style={{backgroundColor: 'white'}}>
               <Text style={{color: 'red', fontSize: 20, paddingTop: 5, paddingBottom: 5, textAlign: 'center'}}>{this.props.error}</Text>
             </View>
 
+            {/* Spinner or Login Button*/}
             <CardItem>
-              <Button onPress = { this.onLoginPress.bind(this) } >
-                Login
-              </Button>
+              {this.renderSpinner()}
             </CardItem>
-            
+
+            {/* SignUp  */}
             <View style={{backgroundColor: 'white'}}>
             <Text style={styles.signupMessage}>First time here?</Text>
             </View>
@@ -70,11 +89,8 @@ class LoginForm extends Component {
 }
 // Connect state to LoginForm
 const mapStateToProps = state => {
-  return {
-    email: state.auth.email,
-    password: state.auth.password,
-    error: state.auth.error
-  };
+  const { email, password, error, user, pending } = state.auth;
+  return { email, password, error, user, pending };
 };
 
 // Connect Action Creator to LoginForm component

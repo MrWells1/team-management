@@ -1,11 +1,12 @@
 // This reducer is gonna handle all authentication actions
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS,LOGIN_USER_FAIL, SIGNUP_USER_SUCCESS } from '../actions/types';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS,LOGIN_USER_FAIL, LOGIN_PENDING } from '../actions/types';
 
 const initialState = {
    email: '',
    password: '',
    user: null,
-   error: ''
+   error: '',
+   pending: false
 };
 
 export default (state = initialState, action) => {
@@ -18,14 +19,15 @@ export default (state = initialState, action) => {
       case PASSWORD_CHANGED: 
          return { ...state, password: action.payload, error: ''};  
       
+      case LOGIN_PENDING:
+         return { ...state, pending: true}
+      
       case LOGIN_USER_SUCCESS:
-         return { ...state, user: action.payload}
-
-      case SIGNUP_USER_SUCCESS:
-         return { ...state, user: action.payload}
+         return { ...state, user: action.payload, pending: false}
       
       case LOGIN_USER_FAIL: 
-         return { ...state, error: action.payload}
+         return { ...state, error: action.payload, pending: false}
+
 
       default:
          return state;

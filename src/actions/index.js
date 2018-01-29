@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, SIGNUP_USER } from "./types";
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, SIGNUP_USER, LOGIN_PENDING } from "./types";
 import { Actions } from 'react-native-router-flux';
 
 export const emailChanged = (text) => {
@@ -18,6 +18,7 @@ export const passwordChanged = (text) => {
 
 export const loginUser = ( { email, password } ) => {
    return (dispatch) => {
+      dispatch({type: LOGIN_PENDING});
       firebase.auth().signInWithEmailAndPassword(email, password)
          .then(user => loginUserSuccess(dispatch, user))
          .catch(() => loginUserFail(dispatch));
