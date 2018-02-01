@@ -13,6 +13,7 @@ class CreateEmployee extends Component {
    render() {
       return(
          <Card>
+            {/* Name input */}
             <CardItem>
                <Input
                   placeholder="Name"
@@ -20,6 +21,8 @@ class CreateEmployee extends Component {
                   onChangeText={text => this.props.employeeUpdate({ prop: 'name', value: text })}
                />
             </CardItem>
+
+            {/* Phone Input */}
             <CardItem>
                <Input 
                   placeholder="Phone Number"
@@ -28,10 +31,14 @@ class CreateEmployee extends Component {
                   onChangeText={text => this.props.employeeUpdate({ prop: 'phone', value: text })}
                />
             </CardItem>
+
+            {/* DayPicker */}
             <DayPicker
                selectedValue={this.props.shift}
                onValueChange={day => this.props.employeeUpdate({ prop: 'shift', value: day})}
             />
+
+            {/* Create button */}
             <CardItem>
                <Button onPress={this.onButtonPress.bind(this)}>
                   Create
