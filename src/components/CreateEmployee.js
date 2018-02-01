@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardItem, Input, Button } from './commons';
+import { Card, CardItem, Input, Button, DayPicker } from './commons';
 import { connect } from 'react-redux';
 import { employeeUpdate } from '../actions';
 
@@ -23,6 +23,10 @@ class CreateEmployee extends Component {
                   onChangeText={text => this.props.employeeUpdate({ prop: 'phone', value: text })}
                />
             </CardItem>
+            <DayPicker
+               selectedValue={this.props.shift}
+               onValueChange={day => this.props.employeeUpdate({ prop: 'shift', value: day})}
+            />
             <CardItem>
                <Button>
                   Create
