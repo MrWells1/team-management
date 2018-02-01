@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Card, CardItem, Input, Button, DayPicker } from './commons';
 import { connect } from 'react-redux';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeCreate } from '../actions';
 
 class CreateEmployee extends Component {
+
+   onButtonPress() {
+      const {name, phone, shift} = this.props;
+      this.props.employeeCreate({ name, phone, shift : shift || 'Monday' });
+   }
 
    render() {
       return(
@@ -28,7 +33,7 @@ class CreateEmployee extends Component {
                onValueChange={day => this.props.employeeUpdate({ prop: 'shift', value: day})}
             />
             <CardItem>
-               <Button>
+               <Button onPress={this.onButtonPress.bind(this)}>
                   Create
                </Button>
             </CardItem>
@@ -43,4 +48,4 @@ const mapStateToProps = state => {
    return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate })(CreateEmployee);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(CreateEmployee);
