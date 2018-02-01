@@ -11,8 +11,9 @@ export default (state=initialState, action) => {
       case EMPLOYEE_UPDATE:
       return {...state, [action.payload.prop]: action.payload.value};
 
+      //clear form after employee is created
       case EMPLOYEE_CREATE_SUCCESS: 
-      return { ...state, initialState};
+      return initialState;
 
       default:
       return state;

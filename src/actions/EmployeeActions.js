@@ -12,15 +12,12 @@ export const employeeUpdate = ({ prop, value }) => {
 export const employeeCreate = ({name,phone,shift}) => {
    //use currentUser as userId
    const {currentUser} = firebase.auth();
-   return () => {
+   return (dispatch) => {
       firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .push({ name, phone, shift })
-      .then(() => employeeCreateSuccess());
+      .then(() => {
+         dispatch({type: EMPLOYEE_CREATE_SUCCESS});
+         Actions.pop();
+      });
    };
-   function employeeCreateSuccess() {
-      Actions.pop();
-      return {
-         type: EMPLOYEE_CREATE_SUCCESS      
-      };
-   }
 };
