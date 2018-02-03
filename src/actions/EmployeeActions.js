@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_CREATE_SUCCESS } from './types';
+import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_CREATE_SUCCESS, EMPLOYEE_FETCH_SUCCESS } from './types';
 import { Actions } from 'react-native-router-flux';
 
 //update state when users start typing
