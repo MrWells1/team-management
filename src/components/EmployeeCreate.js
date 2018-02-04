@@ -3,7 +3,7 @@ import { Card, CardItem, Input, Button, DayPicker } from './commons';
 import { connect } from 'react-redux';
 import { employeeUpdate, employeeCreate } from '../actions';
 
-class CreateEmployee extends Component {
+class EmployeeCreate extends Component {
 
    onButtonPress() {
       const {name, phone, shift} = this.props;
@@ -55,4 +55,4 @@ const mapStateToProps = state => {
    return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(CreateEmployee);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);
