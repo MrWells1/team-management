@@ -37,5 +37,4 @@ class EmployeeForm extends Component {
    }
 }
 
-
 export default connect(null, { employeeUpdate, employeeCreate })(EmployeeForm);
