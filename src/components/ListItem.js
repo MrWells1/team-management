@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { CardItem } from './commons';
+import { Actions } from 'react-native-router-flux';
 
-const ListItem = (props) => {
-   const { name, phone, shift } = props.item;
-   return(
-      <CardItem style={styles.cardStyle}>
-         <Text style={[styles.textStyle, styles.nameStyle]}>{name}</Text>
-         <Text style={styles.textStyle}>{phone}</Text>
-         <Text style={styles.textStyle}>{shift}</Text>
-      </CardItem>
-   );
+class ListItem extends Component {
+   handlePressRow() {
+      Actions.createEmployee({ item: this.props.item});
+   }
+   render() {
+      const { name } = this.props.item;
+      return(
+         <TouchableWithoutFeedback onPress={this.handlePressRow.bind(this)}>
+            <View>
+               <CardItem style={styles.cardStyle}>
+                  <Text style={[styles.textStyle, styles.nameStyle]}>{name}</Text>
+                  {/* <Text style={styles.textStyle}>{phone}</Text>
+                  <Text style={styles.textStyle}>{shift}</Text> */}
+               </CardItem>
+            </View>
+         </TouchableWithoutFeedback>
+      );
+   }
 };
 
 const styles = {
