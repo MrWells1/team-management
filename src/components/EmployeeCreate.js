@@ -15,8 +15,8 @@ class EmployeeCreate extends Component {
       return(
          <Card>
             {/* Employee form */}
-            <EmployeeForm />
-            
+            <EmployeeForm {...this.props}/>
+
             {/* Create button */}
             <CardItem>
                <Button onPress={this.onButtonPress.bind(this)}>
