@@ -40,9 +40,12 @@ export const employeeFetch = () => {
 //update employee data
 export const employeeSave = ({ name, phone, shift, uid }) => {
    const { currentUser } = firebase.auth();
-   return () => {
+   return (dispatch) => {
       firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set({ name, phone, shift })
-      .then(() => Actions.pop());
+      .then(() => {
+         dispatch({type: EMPLOYEE_CREATE_SUCCESS});   
+         Actions.pop();
+      });
    };
 };
