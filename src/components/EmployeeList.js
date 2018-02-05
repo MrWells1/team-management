@@ -16,7 +16,7 @@ class EmployeeList extends Component {
       return(
          <FlatList
             data={this.props.employees}
-            renderItem={({item}) => <ListItem item={item} />}
+            renderItem={({ item }) => <ListItem employee={ item } />}
          />
       );
    }
@@ -25,7 +25,7 @@ class EmployeeList extends Component {
 const mapStateToProps = state => {
    //transform Object state.employees to Array
    const employees = _.map(state.employees, (val, uid) => {
-      return {...val, key: uid}; //{ shift: 'Monday', name: 'Vinh', id: '123213' }
+      return {...val, uid}; //{ shift: 'Monday', name: 'Vinh', id: '123213' }
    });
    return { employees };
 };
