@@ -4,7 +4,7 @@ import { text } from 'react-native-communications';
 import { connect } from 'react-redux';
 import EmployeeForm from './EmployeeForm';
 import { Card, CardItem, Button, Confirm } from './commons';
-import { employeeUpdate, employeeSave } from '../actions';
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import { Text } from 'react-native';
 
 class EmployeeEdit extends Component {
@@ -28,6 +28,11 @@ class EmployeeEdit extends Component {
    handleText() {
       const { name, phone, shift } = this.props;
       text(phone, `Hi ${name}, your next shift is on ${shift}`);
+   }
+   
+   handleAccept() {
+      const { uid } = this.props.employee;
+      this.props.employeeDelete({ uid });
    }
 
    render() {
@@ -58,6 +63,7 @@ class EmployeeEdit extends Component {
             <Confirm 
                visible={this.state.visible}
                handleCancel={() => this.setState({visible: false})}
+               handleAccept={this.handleAccept.bind(this)}
                >
                Do you want to delete this employee?
             </Confirm>
@@ -71,4 +77,4 @@ const mapStateToProps = state => {
    return { name, phone, shift };
 };
 
-export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeeSave, employeeDelete })(EmployeeEdit);
