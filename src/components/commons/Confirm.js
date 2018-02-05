@@ -17,7 +17,7 @@ const Confirm = (props) => {
                   <CardItem>
                      <Text style={styles.textStyle}>{props.children}</Text>
                   </CardItem>
-                  <CardItem style={styles.cardStyle}>
+                  <CardItem>
                      <Button onPress={props.handleAccept}>Accept</Button>
                      <Button onPress={props.handleCancel}>Cancel</Button>
                   </CardItem>

@@ -57,6 +57,7 @@ class EmployeeEdit extends Component {
 
             <Confirm 
                visible={this.state.visible}
+               handleCancel={() => this.setState({visible: false})}
                >
                Do you want to delete this employee?
             </Confirm>
