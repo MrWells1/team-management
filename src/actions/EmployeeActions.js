@@ -1,5 +1,11 @@
 import firebase from 'firebase';
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_CREATE_SUCCESS, EMPLOYEE_FETCH_SUCCESS } from './types';
+import {
+  EMPLOYEE_UPDATE,
+  EMPLOYEE_CREATE,
+  EMPLOYEE_CREATE_SUCCESS,
+  EMPLOYEE_FETCH_SUCCESS,
+  EMPLOYEE_SAVE_SUCCESS
+} from "./types";
 import { Actions } from 'react-native-router-flux';
 
 //update state when users start typing
@@ -44,7 +50,7 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
       firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set({ name, phone, shift })
       .then(() => {
-         dispatch({type: EMPLOYEE_CREATE_SUCCESS});   
+         dispatch({type: EMPLOYEE_SAVE_SUCCESS}); 
          Actions.pop();
       });
    };

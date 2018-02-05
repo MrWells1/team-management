@@ -1,4 +1,6 @@
-import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE_SUCCESS } from '../actions/types';
+import { 
+   EMPLOYEE_UPDATE, EMPLOYEE_CREATE_SUCCESS, EMPLOYEE_SAVE_SUCCESS 
+} from '../actions/types';
 
 const initialState = {
    name: '',
@@ -13,6 +15,10 @@ export default (state=initialState, action) => {
 
       //clear form after employee is created
       case EMPLOYEE_CREATE_SUCCESS: 
+      return initialState;
+
+      //clear from after new employee's data was saved
+      case EMPLOYEE_SAVE_SUCCESS:
       return initialState;
 
       default:
