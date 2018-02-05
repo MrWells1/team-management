@@ -3,11 +3,16 @@ import _ from 'lodash';
 import { text } from 'react-native-communications';
 import { connect } from 'react-redux';
 import EmployeeForm from './EmployeeForm';
-import { Card, CardItem, Button } from './commons';
+import { Card, CardItem, Button, Confirm } from './commons';
 import { employeeUpdate, employeeSave } from '../actions';
 import { Text } from 'react-native';
 
 class EmployeeEdit extends Component {
+
+   constructor(props) {
+      super(props);
+      this.state = {visible: false};
+   }
 
    componentWillMount() {
       _.each(this.props.employee, (value, prop) => {
@@ -45,10 +50,16 @@ class EmployeeEdit extends Component {
             </CardItem>
 
             <CardItem>
-               <Button>
+               <Button onPress={() => this.setState({visible: true})}>
                   Delete
                </Button>
             </CardItem>
+
+            <Confirm 
+               visible={this.state.visible}
+               >
+               Do you want to delete this employee?
+            </Confirm>
          </Card>
       );
    }
